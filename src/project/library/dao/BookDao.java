@@ -4,7 +4,6 @@ import project.library.entity.BookEntity;
 import project.library.exception.DaoException;
 import project.library.util.ConnectionManager;
 
-import javax.xml.namespace.QName;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +41,12 @@ public class BookDao {
             WHERE id = ?
             """;
 
+    private static final String ID = "id";
+    private static final String NAME = "name";
+    private static final String YEAR = "year";
+    private static final String PAGES = "pages";
+    private static final String AUTHOR_ID = "author_id";
+
     private BookDao() {
     }
 
@@ -69,7 +74,6 @@ public class BookDao {
             if (resultSet.next()) {
                 bookEntity = buildBook(resultSet);
 
-
             }
 
             return Optional.ofNullable(bookEntity);
@@ -80,11 +84,11 @@ public class BookDao {
 
     private static BookEntity buildBook(ResultSet resultSet) throws SQLException {
         return new BookEntity(
-                resultSet.getLong("id"),
-                resultSet.getString("name"),
-                resultSet.getInt("year"),
-                resultSet.getInt("pages"),
-                resultSet.getInt("author_id")
+                resultSet.getLong(ID),
+                resultSet.getString(NAME),
+                resultSet.getInt(YEAR),
+                resultSet.getInt(PAGES),
+                resultSet.getInt(AUTHOR_ID)
         );
     }
 
@@ -94,7 +98,7 @@ public class BookDao {
             prepareStatement.setString(1, bookEntity.getName());
             prepareStatement.setInt(2, bookEntity.getYear());
             prepareStatement.setInt(3, bookEntity.getPages());
-            prepareStatement.setInt(4, bookEntity.getAuthorId());
+            prepareStatement.setInt(4, bookEntity.getAuthor_id());
             prepareStatement.setLong(5, bookEntity.getId());
 
             prepareStatement.executeUpdate();
@@ -109,7 +113,7 @@ public class BookDao {
             preparedStatement.setString(1, bookEntity.getName());
             preparedStatement.setInt(2, bookEntity.getYear());
             preparedStatement.setInt(3, bookEntity.getPages());
-            preparedStatement.setInt(4, bookEntity.getAuthorId());
+            preparedStatement.setInt(4, bookEntity.getAuthor_id());
 
             preparedStatement.executeUpdate();
 
