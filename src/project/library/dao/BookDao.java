@@ -51,7 +51,7 @@ public class BookDao {
     }
 
     public List<BookEntity> findAll() {
-        try (var connection = ConnectionManager.open();
+        try (var connection = ConnectionManager.get();
              var preparedStatement = connection.prepareStatement(FIND_ALL_SQL)) {
             var resultSet = preparedStatement.executeQuery();
             List<BookEntity> books = new ArrayList<>();
@@ -65,7 +65,7 @@ public class BookDao {
     }
 
     public Optional<BookEntity> findById(Long id) {
-        try (var connection = ConnectionManager.open();
+        try (var connection = ConnectionManager.get();
              var preparedStatement = connection.prepareStatement(FIND_BY_ID_SQL)) {
             preparedStatement.setLong(1, id);
 
@@ -93,7 +93,7 @@ public class BookDao {
     }
 
     public void update(BookEntity bookEntity) {
-        try (var connection = ConnectionManager.open();
+        try (var connection = ConnectionManager.get();
              var prepareStatement = connection.prepareStatement(UPDATE_SQL)) {
             prepareStatement.setString(1, bookEntity.getName());
             prepareStatement.setInt(2, bookEntity.getYear());
@@ -108,7 +108,7 @@ public class BookDao {
     }
 
     public BookEntity save(BookEntity bookEntity) {
-        try (var connection = ConnectionManager.open();
+        try (var connection = ConnectionManager.get();
              var preparedStatement = connection.prepareStatement(SAVE_SQL, Statement.RETURN_GENERATED_KEYS);) {
             preparedStatement.setString(1, bookEntity.getName());
             preparedStatement.setInt(2, bookEntity.getYear());
@@ -128,7 +128,7 @@ public class BookDao {
     }
 
     public boolean delete(Long id) throws SQLException {
-        try (var connection = ConnectionManager.open();
+        try (var connection = ConnectionManager.get();
              var preparedStatement = connection.prepareStatement(DELETE_SQL)) {
             preparedStatement.setLong(1, id);
 

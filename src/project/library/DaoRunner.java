@@ -26,9 +26,9 @@ public class DaoRunner {
         bookEntity.setName("Kaffka");
         bookEntity.setYear(1995);
         bookEntity.setPages(1002);
-        bookEntity.setAuthorId(6);
+        bookEntity.setAuthor_id(6);
 
-        var savedBookEntity = bookEntity.save(bookEntity); // создал в BookEntity object, потому что не запускалось(
+        var savedBookEntity = bookEntity.save(bookEntity);
         System.out.println(savedBookEntity);
     }
 }

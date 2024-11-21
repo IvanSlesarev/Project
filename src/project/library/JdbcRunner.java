@@ -11,8 +11,10 @@ public class JdbcRunner {
 
     public static void main(String[] args) throws SQLException {
         Class<Driver> driverClass = Driver.class;
-        try (var connection = ConnectionManager.open()){
+        try (var connection = ConnectionManager.get()){
             System.out.println(connection.getTransactionIsolation());
         }
     }
 }
+
+
