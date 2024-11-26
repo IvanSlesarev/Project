@@ -28,7 +28,7 @@ public class DaoRunner {
         bookEntity.setPages(1002);
         bookEntity.setAuthor_id(6);
 
-        var savedBookEntity = bookEntity.save(bookEntity);
-        System.out.println(savedBookEntity);
+       // var savedBookEntity = bookEntity.save(bookEntity);
+       // System.out.println(savedBookEntity);
     }
 }
