@@ -3,8 +3,7 @@ package project.library.dao;
 import project.library.entity.BookEntity;
 import project.library.util.ConnectionManager;
 
-import java.awt.print.Book;
-import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ public class BookDao implements Dao<Integer, BookEntity> {
     private static final String FIND_ALL = """
             SELECT *
             FROM book
-            WHERE author_id ?
             """;
 
     private BookDao() {

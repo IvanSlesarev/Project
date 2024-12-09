@@ -1,13 +1,10 @@
 package project.library.util;
 
 import lombok.SneakyThrows;
-import lombok.experimental.UtilityClass;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
-@UtilityClass
 public class ConnectionManager {
 
     private static final String URL_KEY = "db.url";
@@ -18,20 +15,17 @@ public class ConnectionManager {
         loadDriver();
     }
 
+    @SneakyThrows
     private static void loadDriver() {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        Class.forName("org.postgresql.Driver");
     }
 
-@SneakyThrows
+    @SneakyThrows
     public static Connection get() {
-       return DriverManager.getConnection(
-                    PropertiesUtil.get(URL_KEY),
-                    PropertiesUtil.get(USER_KEY),
-                    PropertiesUtil.get(PASSWORD_KEY));
+        return DriverManager.getConnection(
+                PropertiesUtil.get(URL_KEY),
+                PropertiesUtil.get(USER_KEY),
+                PropertiesUtil.get(PASSWORD_KEY));
     }
 
 }
